@@ -16,14 +16,10 @@ app.use(bodyParser.urlencoded({ extended: false })); // Use body-parser for hand
 app.use(bodyParser.json());
 app.use(express.static("public")); // Serve static content for the app from the "public" directory in the application directory.
 
-// Set Handlebars as the default templating engine.
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-/////////////////////////////////////////////// /* Configure Routes */ //////////////////////////////////////////////////////////
-require("./controllers/webScrapperController.js")(app);
-
-/////////////////////////////////////////////// /* Execution */ //////////////////////////////////////////////////////////
+require("/controllers/Controller.js")(app);
 
 app.listen(PORT, ()=>{
     console.log(`App listening on PORT ${PORT}`);
