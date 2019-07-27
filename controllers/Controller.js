@@ -28,9 +28,30 @@ router.get("/save", function(req, res) {
   });
 });
 
+//save route
+
+router.get("/api/savedArticles", (req, res) => {
+  db.Articles.find({}).
+  then(function(dbArticle) {
+    res.json(dbArticle);
+  }).catch(function(err) {
+    res.json(err);
+  });
+});
+
 //create route 
 
 //delete route 
+router.post("/api/deleteArticle", (req, res) => {
+  sessionArticle = req.body;
+
+  db.Articles.findByIdAndRemove(sessionArticle["_id"]). 
+  then(response => {
+    if (response) {
+      res.send("Sucessfully Deleted");
+    }
+  });
+});
 
 //note route 
 
